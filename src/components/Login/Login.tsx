@@ -1,4 +1,7 @@
 import React, {useState} from "react";
+import { signInWithEmailAndPassword } from "firebase/auth";
+
+import auth from "../../config/firebase"
 
 export const Login = (props:any) => {
   
@@ -82,16 +85,24 @@ export const Login = (props:any) => {
             pwdError = "";   
             setIsUValid(true);
             setIsPValid(true);
-            if (formState.uId === "lol" && formState.pwd === "lol")
-            {
+            signInWithEmailAndPassword(auth, formState.uId, formState.pwd)
+            .then((userCredential) => {
+                // Signed in 
+                const user = userCredential.user;
                 setFormState({...formState, uIdError, pwdError, validationError});
+
                 console.log("Logged in successfully!");
-            }
-            else
-            {
-                validationError = "Invalid Username or Password";
+                // ...
+            })
+            .catch((error) => {
+                const errorCode = error.code;
+                const errorMessage = error.message;
+                
+                validationError = errorMessage;
                 setFormState({...formState, uIdError, pwdError, validationError});
-            }
+
+            });
+
         }
     };
 

@@ -1,4 +1,7 @@
 import React, {useState} from "react";
+import { createUserWithEmailAndPassword } from "firebase/auth";
+
+import auth from "../../config/firebase"
 
 export const Register = (props : any) => {
     
@@ -87,67 +90,6 @@ export const Register = (props : any) => {
         let cpwdError= "";
         setFormState({...formState, fNameError, lNameError, emailError, uIdError, pwdError, cpwdError});
 
-        if (!formState.fName)
-        {
-            fNameError = "First Name is required";
-            setIsFValid(false);
-        }
-
-        if (!formState.lName)
-        {
-            lNameError = "Last Name is required.";
-            setIsLValid(false);
-        }
-
-        if (!formState.email)
-        {
-            emailError = "Email is required.";
-            setIsEValid(false);
-        }
-        else if (!/\S+@\S+\.\S+/.test(formState.email)) 
-        {
-            emailError = "Please enter Email in valid format: prefix@domain.com";
-            setIsEValid(false);
-        }
-
-        if (!formState.uId)
-        {
-            uIdError = "Username is required.";
-            setIsUValid(false);
-        }
-        else if (formState.uId === duplicatUid) // Logic to check for duplicate user id in the database
-        {
-            uIdError = "Username already exists.";  
-            setIsUValid(false); 
-        }
-
-        if (!formState.pwd || !passwordRegex.test(formState.pwd))
-        {
-            console.log(passwordRegex.test(formState.pwd) + " " + formState.pwd);
-            if (!formState.pwd)
-                pwdError = "Password is required.";
-            else if (!passwordRegex.test(formState.pwd))
-                pwdError = "Please enter a valid password.";
-            setIsPValid(false);
-        }
-        else
-        {
-            if (!formState.cpwd)
-            {
-                cpwdError = "Please renter password to confirm.";
-                setIsCValid(false);
-            }
-            else
-            {
-                if (formState.pwd !== formState.cpwd)
-                {
-                    cpwdError = "Passwords do not match!";
-                    setIsCValid(false);
-                }
-            }
-            
-        }
-
         if (fNameError || lNameError || emailError || uIdError || pwdError || cpwdError)
         {
             setFormState({...formState, fNameError, lNameError, emailError, uIdError, pwdError, cpwdError});
@@ -156,7 +98,19 @@ export const Register = (props : any) => {
         {
             // Send information to database and go to home page
             setIsCValid(true);
-            console.log("Account created successfully");
+            createUserWithEmailAndPassword(auth, formState.email, formState.pwd)
+            .then((userCredential) => {
+                // Signed in 
+                const user = userCredential.user;
+
+                console.log("Account created successfully");
+                // ...
+            })
+            .catch((error) => {
+                const errorCode = error.code;
+                const errorMessage = error.message;
+        
+            });
         }
     };
 

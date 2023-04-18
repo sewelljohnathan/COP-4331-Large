@@ -15,7 +15,6 @@ export const Register = (props : any) => {
         fNameError: string;
         lNameError: string;
         emailError: string;
-        uIdError: string;
         pwdError: string;
         cpwdError: string;
     }
@@ -23,7 +22,6 @@ export const Register = (props : any) => {
     const [isFValid, setIsFValid] = useState(true);
     const [isLValid, setIsLValid] = useState(true);
     const [isEValid, setIsEValid] = useState(true);
-    const [isUValid, setIsUValid] = useState(true);
     const [isPValid, setIsPValid] = useState(true);
     const [isCValid, setIsCValid] = useState(true);
     const [isFocused, setIsFocused] = React.useState(false);
@@ -34,16 +32,14 @@ export const Register = (props : any) => {
         setIsFValid(true);
         setIsLValid(true);
         setIsEValid(true);
-        setIsUValid(true);
         setIsPValid(true);
         setIsCValid(true);
         let fNameError= "";
         let lNameError= "";
         let emailError= "";
-        let uIdError= "";
         let pwdError= "";
         let cpwdError= "";
-        setFormState({...formState, fNameError, lNameError, emailError, uIdError, pwdError, cpwdError});
+        setFormState({...formState, fNameError, lNameError, emailError, pwdError, cpwdError});
     };
 
     const handleBlur = () => {
@@ -60,7 +56,6 @@ export const Register = (props : any) => {
         fNameError: "",
         lNameError: "",
         emailError: "",
-        uIdError: "",
         pwdError: "",
         cpwdError: "",
     });
@@ -79,20 +74,18 @@ export const Register = (props : any) => {
     const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
 
-        let duplicatUid = "lol";
         const passwordRegex = /^(?=.*[!@#$%^&*])(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9]).{8,}$/;
 
         let fNameError= "";
         let lNameError= "";
         let emailError= "";
-        let uIdError= "";
         let pwdError= "";
         let cpwdError= "";
-        setFormState({...formState, fNameError, lNameError, emailError, uIdError, pwdError, cpwdError});
+        setFormState({...formState, fNameError, lNameError, emailError, pwdError, cpwdError});
 
-        if (fNameError || lNameError || emailError || uIdError || pwdError || cpwdError)
+        if (fNameError || lNameError || emailError  || pwdError || cpwdError)
         {
-            setFormState({...formState, fNameError, lNameError, emailError, uIdError, pwdError, cpwdError});
+            setFormState({...formState, fNameError, lNameError, emailError, pwdError, cpwdError});
         }
         else
         {
@@ -100,15 +93,16 @@ export const Register = (props : any) => {
             setIsCValid(true);
             createUserWithEmailAndPassword(auth, formState.email, formState.pwd)
             .then((userCredential) => {
-                // Signed in 
-                const user = userCredential.user;
-
+                
                 console.log("Account created successfully");
-                // ...
             })
             .catch((error) => {
                 const errorCode = error.code;
                 const errorMessage = error.message;
+
+                emailError = errorMessage;
+
+                setFormState({...formState, fNameError, lNameError, emailError, pwdError, cpwdError});
         
             });
         }
@@ -147,9 +141,6 @@ export const Register = (props : any) => {
                 <input className = {isEValid ? "" : "invalid"} value = {formState.email} onChange = {handleInputChange} type = "text" placeholder = "Enter Email address" id = "email" name = "email" title="Email format: prefix@domain.com" onFocus={handleFocus} onClick={handleBlur} style={{ borderColor }}/>
                 {formState.emailError && <span style={{color: "red", fontWeight: "bold", fontSize: "medium"}}>{formState.emailError}</span>}
 
-                {/* <label htmlFor = "UserId">Username</label> */}
-                <input className = {isUValid ? "" : "invalid"} value = {formState.uId} onChange = {handleInputChange} type = "text" placeholder = "Enter Username" id = "uId" name = "uId" title="Username should be unique" onFocus={handleFocus} onClick={handleBlur} style={{ borderColor }}/>
-                {formState.uIdError && <span style={{color: "red", fontWeight: "bold", fontSize: "medium"}}>{formState.uIdError}</span>}
 
                 {/* <label htmlFor = "password">New Password</label> */}
                 <input className = {isPValid ? "" : "invalid"} value = {formState.pwd} onChange = {handleInputChange} type = "password" placeholder = "Enter Password" id = "pwd" name = "pwd" title="Your password should be at least 8 characters long and include a combination of uppercase and lowercase letters, numbers, and special characters." onFocus={handleFocus} onClick={handleBlur} style={{ borderColor }}></input>

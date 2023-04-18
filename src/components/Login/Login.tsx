@@ -131,7 +131,7 @@ export const Login = (props:any) => {
             <form className = "login-form" onSubmit = {handleSubmit}>
 
                 {/* <label htmlFor = "uId">Username</label> */}
-                <input className = {isUValid ? "" : "invalid"} value = {formState.uId} onChange = {handleInputChange} type = "text" placeholder = "Enter Username" id = "uId" name = "uId" onFocus={handleFocus} onClick={handleBlur} style={{ borderColor }}/>
+                <input className = {isUValid ? "" : "invalid"} value = {formState.uId} onChange = {handleInputChange} type = "text" placeholder = "Enter Email" id = "uId" name = "uId" onFocus={handleFocus} onClick={handleBlur} style={{ borderColor }}/>
                 {formState.uIdError && <span style={{color: "red", fontWeight: "bold", fontSize: "medium"}}>{formState.uIdError}</span>}
                 
                 {/* <label htmlFor = "password">Password</label> */}

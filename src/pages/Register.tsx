@@ -1,7 +1,7 @@
 import React, {useState} from "react";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 
-import auth from "../../config/firebase"
+import auth from "../config/firebase"
 
 export const Register = (props : any) => {
     
@@ -110,7 +110,7 @@ export const Register = (props : any) => {
 
     return (
         <div className ="auth-form-container">
-            <button className = "back" onClick={() =>props.onFormSwitch('start')}>
+            <button className = "back" onClick={() => window.open('/', '_self')}>
                 <svg
                     xmlns="http://www.w3.org/2000/svg"
                     width="24"
@@ -152,7 +152,7 @@ export const Register = (props : any) => {
 
                 <button>Create Account</button>
             </form>
-            <button className = "link-btn" onClick={() => props.onFormSwitch('login')}>Already have an account? Login</button>
+            <button className = "link-btn" onClick={() => window.open('/login', '_self')}>Already have an account? Login</button>
         </div>
     )
 }

@@ -1,7 +1,7 @@
 import React, {useState} from "react";
 import { signInWithEmailAndPassword } from "firebase/auth";
 
-import auth from "../../config/firebase"
+import auth from "../config/firebase"
 
 export const Login = (props:any) => {
   
@@ -109,7 +109,7 @@ export const Login = (props:any) => {
 
     return (
         <div className = "auth-form-container">
-            <button className = "back" onClick={() =>props.onFormSwitch('start')}>
+            <button className = "back" onClick={() => window.open('/', '_self')}>
             <svg
                     xmlns="http://www.w3.org/2000/svg"
                     width="24"
@@ -124,7 +124,7 @@ export const Login = (props:any) => {
                     <polyline points="15 18 9 12 15 6"></polyline>
                 </svg>
                 Back
-           </button>
+            </button>
 
             <h2 className="login">Login</h2>
             
@@ -141,7 +141,8 @@ export const Login = (props:any) => {
                 <button>Login</button>
                 {formState.validationError && <span style={{color: "red", fontWeight: "bold", fontSize: "medium"}}>{formState.validationError}</span>}
             </form>
-            <button className = "link-btn" onClick={() => props.onFormSwitch('register')}>Don't have an account? Register</button>
+            <button className = "link-btn" onClick={() => window.open('/register', '_self')}>Don't have an account? Register</button>
+            
         </div>
     )
 }

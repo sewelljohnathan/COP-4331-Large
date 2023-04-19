@@ -5,6 +5,7 @@ import {Register} from './pages/Register';
 import {Start} from './pages/Start';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import ReactDOM from "react-dom";
+import {Outlet} from "react-router-dom";
 
 export default function App() {
 
@@ -12,7 +13,7 @@ export default function App() {
     <div className='App'>
       <BrowserRouter>
         <Routes>
-          <Route path="/">
+          <Route path="/" element={<Outlet />}>
             <Route index element={<Start />} />
             <Route path="login" element={<Login />} />
             <Route path="register" element={<Register />} />
@@ -23,6 +24,3 @@ export default function App() {
     
   );
 }
-
-ReactDOM.render(<App />, document.getElementById("root"));
-

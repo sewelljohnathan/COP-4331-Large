@@ -1,7 +1,8 @@
 import React, {useState} from "react";
 import { createUserWithEmailAndPassword } from "firebase/auth";
+import { collection, doc, addDoc } from "firebase/firestore";
 
-import auth from "../config/firebase"
+import { auth, db } from "../config/firebase"
 
 export const Register = (props : any) => {
     
@@ -137,9 +138,18 @@ export const Register = (props : any) => {
             setIsCValid(true);
             createUserWithEmailAndPassword(auth, formState.email, formState.pwd)
             .then((userCredential) => {
-                
-                console.log("Account created successfully");
-                window.open('/home', '_self')
+
+                addDoc(collection(db, "users"), {
+                    "firstName": formState.fName,
+                    "lastName": formState.lName,
+                    "uuid": userCredential.user.uid
+                })
+                .then((res) => {
+                    window.open('/home', '_self')
+                })
+                .catch((error) => {
+                    console.log(error)
+                })
             })
             .catch((error) => {
                 const errorCode = error.code;

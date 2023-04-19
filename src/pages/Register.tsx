@@ -9,7 +9,6 @@ export const Register = (props : any) => {
         fName: string;
         lName: string;
         email: string;
-        uId: string;
         pwd: string;
         cpwd: string;
         fNameError: string;
@@ -50,7 +49,6 @@ export const Register = (props : any) => {
         fName: "",
         lName: "",
         email: "",
-        uId: "",
         pwd: "",
         cpwd: "",
         fNameError: "",
@@ -74,14 +72,60 @@ export const Register = (props : any) => {
     const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
 
-        const passwordRegex = /^(?=.*[!@#$%^&*])(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9]).{8,}$/;
-
         let fNameError= "";
         let lNameError= "";
         let emailError= "";
         let pwdError= "";
         let cpwdError= "";
         setFormState({...formState, fNameError, lNameError, emailError, pwdError, cpwdError});
+
+        if (!formState.fName)
+        {
+            fNameError = "First Name is required";
+            setIsFValid(false);
+        }
+
+        if (!formState.lName)
+        {
+            lNameError = "Last Name is required.";
+            setIsLValid(false);
+        }
+
+        if (!formState.email)
+        {
+            emailError = "Email is required.";
+            setIsEValid(false);
+        }
+        else if (!/\S+@\S+\.\S+/.test(formState.email)) 
+        {
+            emailError = "Please enter Email in valid format: prefix@domain.com";
+            setIsEValid(false);
+        }
+
+        if (!formState.pwd)
+        {
+            if (!formState.pwd)
+                pwdError = "Password is required.";
+            setIsPValid(false);
+        }
+        else
+        {
+            if (!formState.cpwd)
+            {
+                cpwdError = "Please renter password to confirm.";
+                setIsCValid(false);
+            }
+            else
+            {
+                if (formState.pwd !== formState.cpwd)
+                {
+                    cpwdError = "Passwords do not match!";
+                    setIsCValid(false);
+                }
+            }
+            
+        }
+
 
         if (fNameError || lNameError || emailError  || pwdError || cpwdError)
         {
@@ -95,12 +139,25 @@ export const Register = (props : any) => {
             .then((userCredential) => {
                 
                 console.log("Account created successfully");
+                window.open('/home', '_self')
             })
             .catch((error) => {
                 const errorCode = error.code;
                 const errorMessage = error.message;
+                console.log(error);
 
-                emailError = errorMessage;
+                let emailErMsg = "auth/email-already-in-use";
+                let pswdErMsg = "auth/weak-password";
+                if (errorCode === emailErMsg)
+                {
+                    emailError = "This email is already in use";
+                    setIsEValid(false);
+                }
+                else if (errorCode === pswdErMsg)
+                {
+                    pwdError = "Please enter valid password:";
+                    setIsCValid(false);
+                }             
 
                 setFormState({...formState, fNameError, lNameError, emailError, pwdError, cpwdError});
         
@@ -141,9 +198,8 @@ export const Register = (props : any) => {
                 <input className = {isEValid ? "" : "invalid"} value = {formState.email} onChange = {handleInputChange} type = "text" placeholder = "Enter Email address" id = "email" name = "email" title="Email format: prefix@domain.com" onFocus={handleFocus} onClick={handleBlur} style={{ borderColor }}/>
                 {formState.emailError && <span style={{color: "red", fontWeight: "bold", fontSize: "medium"}}>{formState.emailError}</span>}
 
-
                 {/* <label htmlFor = "password">New Password</label> */}
-                <input className = {isPValid ? "" : "invalid"} value = {formState.pwd} onChange = {handleInputChange} type = "password" placeholder = "Enter Password" id = "pwd" name = "pwd" title="Your password should be at least 8 characters long and include a combination of uppercase and lowercase letters, numbers, and special characters." onFocus={handleFocus} onClick={handleBlur} style={{ borderColor }}></input>
+                <input className = {isPValid ? "" : "invalid"} value = {formState.pwd} onChange = {handleInputChange} type = "password" placeholder = "Enter Password" id = "pwd" name = "pwd" title="Your password should be at least 6 characters long and include a combination of uppercase and lowercase letters, numbers, and special characters." onFocus={handleFocus} onClick={handleBlur} style={{ borderColor }}></input>
                 {formState.pwdError && <span style={{color: "red", fontWeight: "bold", fontSize: "medium"}}>{formState.pwdError}</span>}
 
                 {/* <label htmlFor = "password">Confirm Password</label> */}

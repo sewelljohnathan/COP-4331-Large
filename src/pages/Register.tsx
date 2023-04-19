@@ -91,20 +91,17 @@ export const Register = (props : any) => {
         {
             // Send information to database and go to home page
             setIsCValid(true);
-            createUserWithEmailAndPassword(auth, formState.email, formState.pwd)
-            .then((userCredential) => {
-                
-                console.log("Account created successfully");
+            fetch("/register", { 
+                method: "POST", 
+                headers: { "Content-Type": "applications/json; charset=UTC-8" }, 
+                body: JSON.stringify({"email": formState.email, "password": formState.pwd})
             })
-            .catch((error) => {
-                const errorCode = error.code;
-                const errorMessage = error.message;
-
-                emailError = errorMessage;
-
-                setFormState({...formState, fNameError, lNameError, emailError, pwdError, cpwdError});
-        
-            });
+            .then(res => {
+                
+            })
+            .catch(error => {
+                
+            })
         }
     };
 

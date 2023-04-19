@@ -97,9 +97,21 @@ export const Login = (props:any) => {
             })
             .catch((error) => {
                 const errorCode = error.code;
-                const errorMessage = error.message;
-                
-                validationError = errorMessage;
+                console.log(errorCode);
+                let validErMsg1 = "auth/wrong-password";
+                let validErMsg2 = "auth/user-not-found";
+                let validErMsg3 = "auth/invalid-email";
+
+                if (errorCode === validErMsg3)
+                {
+                    uIdError = "Invalid Email";
+                }
+
+                if (errorCode === validErMsg1 || errorCode === validErMsg2)
+                {
+                    validationError = "Invalid Email or Password";
+                }
+
                 setFormState({...formState, uIdError, pwdError, validationError});
 
             });

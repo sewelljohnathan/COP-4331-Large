@@ -92,6 +92,7 @@ export const Login = (props:any) => {
                 setFormState({...formState, uIdError, pwdError, validationError});
 
                 console.log("Logged in successfully!");
+                window.open('/home', '_self')
                 // ...
             })
             .catch((error) => {

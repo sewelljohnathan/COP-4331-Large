@@ -6,6 +6,7 @@ import {Start} from './pages/Start';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import ReactDOM from "react-dom";
 import {Outlet} from "react-router-dom";
+import BoardPage from "./pages/Boards/boardPage"
 
 export default function App() {
 
@@ -17,6 +18,7 @@ export default function App() {
             <Route index element={<Start />} />
             <Route path="login" element={<Login />} />
             <Route path="register" element={<Register />} />
+            <Route path="home" element={<BoardPage />} />
           </Route>
         </Routes>
       </BrowserRouter>

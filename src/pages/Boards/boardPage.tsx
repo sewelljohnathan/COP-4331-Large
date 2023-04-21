@@ -25,8 +25,11 @@ const BoardPage = () => {
     setBoard(e.target.value);
   };
   var wide = Math.floor((window.innerWidth - 80) / 80);
-  var boardWide = { width: String(wide * 80) + "px",
-      height: "90%" };
+  var boardWide = {
+    width: String(wide * 80) + "px",
+    height: "90%",
+    "bakground-color": "#622dccd9",
+  };
  var options = boardList.map((board) => (
    <option key={board} value={board}>
      {board}

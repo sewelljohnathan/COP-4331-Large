@@ -42,7 +42,12 @@ const ControlButton = (props:any) => {
        
         break;
       default:
-        console.log("SPEAK");
+        var currentLen = output.length;
+        var len = currentLen - current.length;
+        if (len == 0) {
+          // setCurrent("");
+          setOutput(" ");
+        } 
         var out = output;
         const value = new SpeechSynthesisUtterance(String(out));
         window.speechSynthesis.speak(value);

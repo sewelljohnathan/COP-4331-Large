@@ -7,6 +7,7 @@ import {Start} from './pages/Start';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import ReactDOM from "react-dom";
 import {Outlet} from "react-router-dom";
+import "bootstrap/dist/css/bootstrap.css";
 
 export default function App() {
 

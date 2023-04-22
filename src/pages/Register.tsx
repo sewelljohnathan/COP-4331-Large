@@ -145,7 +145,7 @@ export const Register = (props : any) => {
                     "uuid": userCredential.user.uid
                 })
                 .then((res) => {
-                    window.open('/home', '_self')
+                    window.open('/board', '_self')
                 })
                 .catch((error) => {
                     console.log(error)

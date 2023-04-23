@@ -1,8 +1,9 @@
 import React, {useState} from "react";
 import { createUserWithEmailAndPassword } from "firebase/auth";
-import { collection, doc, addDoc } from "firebase/firestore";
+import { collection, doc, addDoc, setDoc } from "firebase/firestore";
 
 import { auth, db } from "../config/firebase"
+import { wordList } from "./Boards/data";
 
 export const Register = (props : any) => {
     
@@ -139,10 +140,10 @@ export const Register = (props : any) => {
             createUserWithEmailAndPassword(auth, formState.email, formState.pwd)
             .then((userCredential) => {
 
-                addDoc(collection(db, "users"), {
+                setDoc(doc(db, "users", userCredential.user.uid), {
                     "firstName": formState.fName,
                     "lastName": formState.lName,
-                    "uuid": userCredential.user.uid
+                    "wordList": wordList
                 })
                 .then((res) => {
                     window.open('/board', '_self')

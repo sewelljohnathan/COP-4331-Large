@@ -1,63 +1,114 @@
-import React from "react";
+import { useEffect, useState } from "react";
 import Button from "./button";
 import ControlButton from "./controlButton";
 import Output from "./output";
-import { wordList } from "./data";
-// import { useGlobalState } from "state-pool";
-// import { createStore, store} from "state-pool";
+import { doc, getDoc } from "firebase/firestore";
+import { auth, db } from "../../config/firebase";
+import { onAuthStateChanged } from "firebase/auth";
 
-// const store = createStore(); 
+const Board = (props: any) => {
+  let wider = 10;
+  let high = 10;
+  let currentBoardName = props.boardName;
 
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [words, setWords] = useState(new Array<string>());
 
-const Board = (props:any) => {
-  const [output, setOutput] = props.store.useState("output");
-  const [current, setCurrent] = props.store.useState("current");
+  const onControlClick = (e: any) => {
 
-    var wider =10;
-    var high = 10;
-  var currentBoardName  = props.boardName ;
-  function filter_board(word:any)
-   {
-    return word.board === currentBoardName;
+    let newWords = [...words];
+
+    switch (e.target.id) {
+      case "clear":
+        console.log("Clear");
+
+        while (newWords.length > 0) {
+          newWords.pop();
+        }
+        setWords(newWords);
+        break;
+
+      case "back":
+        console.log("Back");
+        newWords.pop();
+        setWords(newWords);
+        break;
+
+      default:
+        window.speechSynthesis.speak(new SpeechSynthesisUtterance(words.join(" ")));
+        while (newWords.length > 0) {
+          newWords.pop();
+        }
+        setWords(newWords);
+    }
+  };
+
+  const onButtonClick = (e: any) => {
+    console.log(e.target.value);
+
+    let newWords = [...words];
+    newWords.push(e.target.value);
+    setWords(newWords);
+  };
+
+  useEffect(() => {
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        setIsAuthenticated(true);
+      }
+    });
+  }, []);
+
+  const [rows, setRows] = useState(new Array<any>());
+  useEffect(() => {
+    let user = auth.currentUser;
+    if (user) {
+      getDoc(doc(db, "users", user.uid))
+        .then((doc) => {
+          if (doc.exists()) {
+
+            let data = doc.data();
+            let wordList = data["wordList"];
+            var currentBoard = wordList.filter((word: any) => {
+              return word.board === currentBoardName;
+            });
+
+            let newRows = [];
+            for (let i = 0; i < currentBoard.length; i++) {
+              newRows.push(currentBoard[i].word);
+            }
+
+            setRows(newRows);
+          }
+        })
+        .catch((err) => {});
+    }
+  }, [currentBoardName, isAuthenticated]);
+
+  let wide = Math.floor((window.innerWidth - 80) / wider);
+  let boardWide = { width: String(wide * 80) + "px" };
+  let pageLen = (window.innerHeight - 300) / high;
+  let len = rows.length / pageLen;
+  wider = 20;
+  high = 15;
+
+  const buttons = [];
+  for (let i = 0; i < rows.length; i++) {
+    buttons.push(
+      <Button
+        txt={rows[i]}
+        wide={wider}
+        high={high}
+        handleClick={onButtonClick}
+      />
+    );
   }
-  var currentBoard = wordList.filter(filter_board);
-  // var rows:any = [];
-  function makeRows(currentBoard:any){
-    var rows: any = [];
-     for (let i = 0; i < currentBoard.length; i++) {
-       rows.push(currentBoard[i].word);
-     }
-     return rows
-
-  } 
-
-     var rows:any = makeRows(currentBoard);
-      var wide = Math.floor((window.innerWidth - 80) / wider);
-      var boardWide = { width: String(wide * 80) + "px" };
-      var pageLen = (window.innerHeight - 300) / high;
-      var len = rows.length / pageLen;
-      var wider = 20;
-      var high = 15;
-      var buttons = []
-
-      for(let i = 0; i <rows.length; i++){
-        buttons.push(
-          <Button txt={rows[i]} wide={wider} high={high} store={props.store} />
-        );
-      }
-
-      var styleBoard={
-        
-      }
-
-
-
 
   return (
-    <div >
+    <div>
       <div className="row my-3">
         <div className="col-9">
-          <Output high={high * 4} value={output} />
+          <Output high={high * 4} words={words} />
         </div>
 
         <div className="col-3">
@@ -67,36 +118,32 @@ const Board = (props:any) => {
               wide={100}
               high={high}
               id={"speak"}
-              store={props.store}
+              handleClick={onControlClick}
             />
           </div>
           <div className="row">
-              <ControlButton
-                id={"back"}
-                txt={" Back "}
-                wide={50}
-                high={high}
-                store={props.store}
-              />
-           
-              <ControlButton
-                id={"clear"}
-                txt={" Clear "}
-                wide={50}
-                high={high}
-                store={props.store}
-              />
+            <ControlButton
+              id={"back"}
+              txt={" Back "}
+              wide={50}
+              high={high}
+              handleClick={onControlClick}
+            />
 
+            <ControlButton
+              id={"clear"}
+              txt={" Clear "}
+              wide={50}
+              high={high}
+              handleClick={onControlClick}
+            />
           </div>
         </div>
       </div>
 
-      <div className = "py-3 w-75">{buttons}</div>
+      <div className="py-3 w-75">{buttons}</div>
     </div>
   );
-  
-
-  }
-
+};
 
 export default Board;

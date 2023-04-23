@@ -10,7 +10,6 @@ import AddWord from "./addWord"
 import { createStore } from "state-pool";
 // import TypeTalk from "./components/TypeTalk/typeTalk";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-const store = createStore();
 
 const BoardPage = () => {
   const [board, setBoard] = React.useState("Home");
@@ -132,7 +131,7 @@ const BoardPage = () => {
       >
         {options}
       </select>
-      <Board boardName={selectedBoard} store={store} />
+      <Board boardName={selectedBoard} />
     </div>
   );
 };

@@ -1,4 +1,4 @@
-router.post('/api/login', async (req, res) => {
+/*router.post('/api/login', async (req, res) => {
     try {
         const { email, password } = req.body;
         
@@ -25,3 +25,4 @@ router.post('/api/login', async (req, res) => {
         res.status(500).send('Internal server error');
     }
 });
+*/

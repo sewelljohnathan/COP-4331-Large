@@ -1,18 +1,8 @@
-import React from "react";
-// import ReactDOM from "react-dom/client";
-// import TalkButton from "./talkButton";
-// import { useRef } from "react";
-import { createStore } from "state-pool";
-import { useState } from "react";
+import { useRef } from "react";
 import { boardList } from "./data";
+import { auth, db } from "../../config/firebase";
+import { arrayUnion, doc, updateDoc } from "firebase/firestore";
 const AddWord = (props: any) => {
-  const [board, setBoard] = React.useState("Home");
-  // const [board, setBoard] = React.useState("Home");
-  // var optionsOld = boardList.map((board:any) => (
-  //   <option key={board} value={board}>
-  //     {board}
-  //   </option>
-  // ));
   var options: any = [];
   for (let i = 0; i < boardList.length; i++) {
     options.push(
@@ -28,14 +18,40 @@ const AddWord = (props: any) => {
     height: "5%",
   };
 
+  const wordRef = useRef("");
+  const boardRef = useRef("Home");
+  const addWord = (e: any) => {
+    if (!auth.currentUser) {
+      return;
+    }
+    if (wordRef.current === "" || boardRef.current === "") {
+      return;
+    }
+
+    updateDoc(doc(db, "users", auth.currentUser.uid), {
+      wordList: arrayUnion({ word: wordRef.current, board: boardRef.current }),
+    });
+  };
+
   return (
     <div className="input-group mb-3">
-      <input className="form-control"></input>
-      <select className="form-select rounded-start-pill" style={selectStyle}>
+      <input
+        className="form-control"
+        onChange={(e: any) => {
+          wordRef.current = e.target.value;
+        }}
+      ></input>
+      <select
+        className="form-select rounded-start-pill"
+        style={selectStyle}
+        onChange={(e: any) => {
+          boardRef.current = e.target.value;
+        }}
+      >
         {options}
       </select>
       <div className="col-12">
-        <button type="submit" className="btn btn-primary">
+        <button type="submit" className="btn btn-primary" onClick={addWord}>
           Save
         </button>
       </div>

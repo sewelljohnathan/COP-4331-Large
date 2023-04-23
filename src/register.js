@@ -1,4 +1,4 @@
-const { bcrypt, crypto, User, nodemailer, mongoose, express, createToken, returnUser } = require('../modules');
+/*const { bcrypt, crypto, User, nodemailer, mongoose, express, createToken, returnUser } = require('../modules');
 const router = express.Router();
 
 router.post('/api/signup', async (req, res) => {
@@ -30,4 +30,5 @@ router.post('/api/signup', async (req, res) => {
         console.error(err);
         res.status(500).send('Internal server error');
     }
-});
+});]
+*/

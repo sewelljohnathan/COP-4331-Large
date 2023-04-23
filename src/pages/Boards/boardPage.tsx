@@ -3,6 +3,9 @@ import Board from "./board";
 import TypeTalk from "./TypeTalk/typeTalk";
 import { boardList } from "./data";
 import AddWord from "./addWord";
+import { onAuthStateChanged } from "firebase/auth";
+import { auth, db } from "../../config/firebase";
+import { doc, getDoc } from "firebase/firestore";
 
 const BoardPage = () => {
   const [selectedBoard, setSelectedBoard] = useState("Home");
@@ -24,8 +27,24 @@ const BoardPage = () => {
     color: "black",
     height: "5%",
   };
+
+  const [username, setUsername] = useState("");
+  onAuthStateChanged(auth, (user) => {
+    if (user) {
+      getDoc(doc(db, "users", user.uid))
+        .then((doc) => {
+          if (doc.exists()) {
+            let data = doc.data();
+            setUsername(`${data["firstName"]} ${data["lastName"]}`);
+          }
+        })
+        .catch((err) => {});
+    }
+  });
+
   return (
     <div style={boardWide} className={"px-auto mx-auto pt-3"}>
+      <h1>Welcome {username}</h1>
       <div>
         <button
           className="btn btn-light-outline"

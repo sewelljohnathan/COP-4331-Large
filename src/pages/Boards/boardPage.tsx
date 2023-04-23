@@ -1,45 +1,29 @@
-import logo from "./logo.svg";
-import React from "react";
-// import "./App.css";
+import { useState } from "react";
 import Board from "./board";
-import TypeTalk from "./TypeTalk/typeTalk"
-// import Output from "./components/output.js";
-// import "./index.css";
+import TypeTalk from "./TypeTalk/typeTalk";
 import { boardList } from "./data";
-import AddWord from "./addWord"
-import { createStore } from "state-pool";
-// import TypeTalk from "./components/TypeTalk/typeTalk";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import AddWord from "./addWord";
 
 const BoardPage = () => {
-  const [board, setBoard] = React.useState("Home");
-  // var currentBoardName = "Home";
-  // function filter_board(word: any) {
-  //   return word.board === currentBoardName;
-  // }
+  const [selectedBoard, setSelectedBoard] = useState("Home");
 
-  const [selectedBoard, setSelectedBoard] = React.useState("Home");
-
-  let handleBoardChange = (e: any) => {
-    setBoard(e.target.value);
-  };
   var wide = Math.floor((window.innerWidth - 80) / 80);
   var boardWide = {
     width: String(wide * 80) + "px",
     height: "90%",
     "bakground-color": "#622dccd9",
   };
- var options = boardList.map((board) => (
-   <option key={board} value={board}>
-     {board}
-   </option>
- ));
-   const selectStyle = {
-     width: '95%',
-     background: "white",
-     color: "black",
-     height: "5%",
-   };
+  var options = boardList.map((board) => (
+    <option key={board} value={board}>
+      {board}
+    </option>
+  ));
+  const selectStyle = {
+    width: "95%",
+    background: "white",
+    color: "black",
+    height: "5%",
+  };
   return (
     <div style={boardWide} className={"px-auto mx-auto pt-3"}>
       <div>
@@ -136,4 +120,4 @@ const BoardPage = () => {
   );
 };
 
-export default BoardPage
+export default BoardPage;

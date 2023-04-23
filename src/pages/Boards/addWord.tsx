@@ -30,6 +30,8 @@ const AddWord = (props: any) => {
 
     updateDoc(doc(db, "users", auth.currentUser.uid), {
       wordList: arrayUnion({ word: wordRef.current, board: boardRef.current }),
+    }).then((res) => {
+      window.open("/board", "_self");
     });
   };
 

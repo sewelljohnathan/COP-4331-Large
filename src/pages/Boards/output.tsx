@@ -14,7 +14,7 @@ const Output = (props: any) => {
     display: "inline",
     "font-size": "24px",
   };
-  
+
   return (
     <div className="screen-row h-100">
       <input
@@ -22,7 +22,7 @@ const Output = (props: any) => {
         readOnly
         value={props.words.join(" ")}
         style={styleO}
-        className="rounded-3" 
+        className="rounded-3"
       />
     </div>
   );

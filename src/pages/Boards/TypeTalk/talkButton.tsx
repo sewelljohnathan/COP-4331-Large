@@ -18,20 +18,18 @@ const talkButton = (props: any) => {
     height: high,
   };
   let handleClick = (e: any) => {
-    
-       var out = speech;
-       const value = new SpeechSynthesisUtterance(String(out));
-       window.speechSynthesis.speak(value);
-       setSpeech("")
-   
+    var out = speech;
+    const value = new SpeechSynthesisUtterance(String(out));
+    window.speechSynthesis.speak(value);
+    setSpeech("");
   };
-  
+
   return (
     <button
       className={"rounded-3"}
       style={style}
       onClick={handleClick}
-      type = "button"
+      type="button"
     >
       Speak
     </button>

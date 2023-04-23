@@ -4,21 +4,21 @@
 // import { useRef } from "react";
 import { createStore } from "state-pool";
 import { useState } from "react";
-const TypeTalk = (props:any) => {
-    // const inputRef = useRef(null);
-    const store = createStore();
-    const [speech, setSpeech] = useState("");
-    
+const TypeTalk = (props: any) => {
+  // const inputRef = useRef(null);
+  const store = createStore();
+  const [speech, setSpeech] = useState("");
+
   let handleClick = (e: any) => {
     // var out = document.getElementById!("talkInput")
     if (document.getElementById!("talkInput") != null) {
-      var out = speech
+      var out = speech;
       const value = new SpeechSynthesisUtterance(String(out));
       window.speechSynthesis.speak(value);
       setSpeech("");
-    } 
+    }
   };
-  
+
   return (
     // <form>
     //   <input
@@ -34,7 +34,7 @@ const TypeTalk = (props:any) => {
         className="form-control"
         aria-describedby="button-addon2"
         id="talkInput"
-        value ={speech}
+        value={speech}
         onChange={(e) => setSpeech(e.target.value)}
       />
       <button
@@ -47,6 +47,6 @@ const TypeTalk = (props:any) => {
       </button>
     </div>
   );
-}
+};
 
- export default TypeTalk;
+export default TypeTalk;

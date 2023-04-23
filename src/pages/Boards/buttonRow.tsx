@@ -1,11 +1,11 @@
 import React from "react";
 import Button from "./button.js";
 
-const ButtonRow = (props:any) => {
+const ButtonRow = (props: any) => {
   const rows = [];
   console.log(props.words);
 
-  for (let i = props.start; i < (props.start + props.len); i++) {
+  for (let i = props.start; i < props.start + props.len; i++) {
     console.log(props.words[i]);
     rows.push(
       <Button
@@ -17,7 +17,7 @@ const ButtonRow = (props:any) => {
     );
   }
 
-  return <div className ="mx-auto my-3"> {rows} </div>;
+  return <div className="mx-auto my-3"> {rows} </div>;
 };
 
 // Export our button component.

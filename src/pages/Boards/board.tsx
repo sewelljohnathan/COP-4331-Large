@@ -15,7 +15,6 @@ const Board = (props: any) => {
   const [words, setWords] = useState(new Array<string>());
 
   const onControlClick = (e: any) => {
-
     let newWords = [...words];
 
     switch (e.target.id) {
@@ -35,7 +34,9 @@ const Board = (props: any) => {
         break;
 
       default:
-        window.speechSynthesis.speak(new SpeechSynthesisUtterance(words.join(" ")));
+        window.speechSynthesis.speak(
+          new SpeechSynthesisUtterance(words.join(" "))
+        );
         while (newWords.length > 0) {
           newWords.pop();
         }
@@ -66,7 +67,6 @@ const Board = (props: any) => {
       getDoc(doc(db, "users", user.uid))
         .then((doc) => {
           if (doc.exists()) {
-
             let data = doc.data();
             let wordList = data["wordList"];
             var currentBoard = wordList.filter((word: any) => {

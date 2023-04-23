@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 
 // Create our Button component as a functional component.
 const Button = (props: any) => {
-
   var wider = String(props.wide) + "%";
   var high = String(props.high) + "%";
   const style = {
@@ -14,7 +13,6 @@ const Button = (props: any) => {
     " margin-top": "2%",
     padding: "5px",
   };
-
 
   return (
     <button

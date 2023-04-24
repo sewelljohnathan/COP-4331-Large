@@ -6,6 +6,8 @@ import AddWord from "./addWord";
 import { onAuthStateChanged } from "firebase/auth";
 import { auth, db } from "../../config/firebase";
 import { doc, getDoc } from "firebase/firestore";
+import LogoutButton from "./LogoutButton";
+import { signOut } from "firebase/auth";
 
 const BoardPage = () => {
   const [selectedBoard, setSelectedBoard] = useState("Home");
@@ -41,6 +43,14 @@ const BoardPage = () => {
         .catch((err) => {});
     }
   });
+
+  const onLogoutClick = (e: any) => {
+    console.log("logout");
+    signOut(auth).then(() => {
+    window.open("/", "_self");
+    }).catch((error) => {
+    });
+  };
 
   return (
     <div style={boardWide} className={"px-auto mx-auto pt-3"}>
@@ -86,6 +96,14 @@ const BoardPage = () => {
             <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z" />
           </svg>
         </button>
+
+        <LogoutButton
+            id={"logout"}
+            txt={" Logout "}
+            wide={50}
+            //high={high}
+            handleClick ={onLogoutClick}
+          />
 
         {/* TTS offcanvas */}
         <div

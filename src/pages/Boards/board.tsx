@@ -149,25 +149,25 @@ const Board = (props: any) => {
             />
 
             <ControlButton
-              txt={" Delete "}
+              txt={" Back "}
               wide={100}
               high={high}
-              id={"delete"}
+              id={"back"}
               handleClick={onControlClick}
               />
           </div>
           <div className="row">
             <ControlButton
-              id={"back"}
-              txt={" Back "}
+              id={"clear"}
+              txt={" Clear "}
               wide={50}
               high={high}
               handleClick={onControlClick}
             />
 
             <ControlButton
-              id={"clear"}
-              txt={" Clear "}
+              id={"delete"}
+              txt={" Delete "}
               wide={50}
               high={high}
               handleClick={onControlClick}

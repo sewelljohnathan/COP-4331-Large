@@ -4,7 +4,7 @@ const ControlButton = (props: any) => {
   var wider = props.wide + "%";
   var high = String(props.high) + "%";
   const style = {
-    width: "fit-content",
+    width: "50",
     padding: "5px",
     background: "DarkOliveGreen",
     color: "white",

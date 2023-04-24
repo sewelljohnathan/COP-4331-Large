@@ -37,7 +37,7 @@ const Board = (props: any) => {
         console.log("Delete");
         
         if (newWords.length > 0) {
-          if (window.confirm("These words will be deleted from your board. Are you sure you want to continue?") == true) {
+          if (window.confirm("The selected words will be deleted from your board. Are you sure you want to continue?") == true) {
         
             while (newWords.length > 0) {
               let deletedWord = newWords.pop();

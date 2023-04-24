@@ -4,12 +4,12 @@ const LogoutButton = (props: any) => {
   var wider = props.wide + "%";
   var high = String(props.high) + "%";
   const style = {
-    width: 50,
-    padding: "5px",
+    width: 0,
+    padding: "0px",
     background: "black",
-    color: "white",
-    "font-size": "85%",
-    height: high,
+    color: "black",
+    "font-size": "110%",
+    height: 0,
   };
 
   return (

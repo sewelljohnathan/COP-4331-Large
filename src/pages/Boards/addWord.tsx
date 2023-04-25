@@ -38,13 +38,13 @@ const AddWord = (props: any) => {
   return (
     <div className="input-group mb-3">
       <input
-        className="form-control"
+        className="form-control rounded-start-pill"
         onChange={(e: any) => {
           wordRef.current = e.target.value;
         }}
       ></input>
       <select
-        className="form-select rounded-start-pill"
+        className="form-select rounded-end-pill"
         style={selectStyle}
         onChange={(e: any) => {
           boardRef.current = e.target.value;
@@ -53,7 +53,7 @@ const AddWord = (props: any) => {
         {options}
       </select>
       <div className="col-12">
-        <button type="submit" className="btn btn-primary" onClick={addWord}>
+        <button type="submit" className="btn btn-outline-secondary" onClick={addWord}>
           Save
         </button>
       </div>

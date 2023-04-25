@@ -6,8 +6,8 @@ const Button = (props: any) => {
   var high = String(props.high) + "%";
   const style = {
     width: "fit-content",
-    background: "DarkOliveGreen",
-    color: "white",
+    background: "#c3d2da",
+    color: "#50566d",
     height: high,
     "font-size": "85%",
     " margin-top": "2%",

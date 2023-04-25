@@ -21,12 +21,7 @@ const BoardPage = () => {
       {board}
     </option>
   ));
-  const selectStyle = {
-    width: "95%",
-    background: "white",
-    color: "black",
-    height: "5%",
-  };
+  
 
   const [username, setUsername] = useState("");
   onAuthStateChanged(auth, (user) => {
@@ -41,100 +36,111 @@ const BoardPage = () => {
         .catch((err) => {});
     }
   });
+  var cardStyle = {
+    width: "95%",
+    background: "#50566d",
+    color: "#c3d2da",
+    height: "5%",
+  };
+
+  var popStyle = {
+    color: "#50566d",
+    background: "#c3d2da",
+  };
+  const selectStyle = {
+    width: "95%",
+    background: "#c3d2da",
+    color: "#50566d",
+    height: "5%",
+  };
+   const btnStyle = {
+     width: "32px",
+     height: "32px",
+   };
+
 
   return (
-    <div style={boardWide} className={"px-auto mx-auto pt-3"}>
-      <h1>Welcome {username}</h1>
-      <div>
-        <button
-          className="btn btn-light-outline"
-          type="button"
-          data-bs-toggle="offcanvas"
-          data-bs-target="#offcanvasTTS"
-          aria-controls="offcanvasTTS"
-        >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="24"
-            height="16"
-            fill="currentColor"
-            className="bi bi-list"
-            viewBox="0 0 16 16"
-          >
-            <path
-              fill-rule="evenodd"
-              d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"
-            />
-          </svg>
-        </button>
-        <button
-          className="btn btn-light-outline"
-          type="button"
-          data-bs-toggle="offcanvas"
-          data-bs-target="#offcanvasAddWord"
-          aria-controls="offcanvasAddWord"
-        >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="32"
-            height="32"
-            fill="currentColor"
-            className="bi bi-plus-circle"
-            viewBox="0 0 16 16"
-          >
-            <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
-            <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z" />
-          </svg>
-        </button>
-
-        {/* TTS offcanvas */}
-        <div
-          className="offcanvas offcanvas-top"
-          data-bs-scroll="true"
-          id="offcanvasTTS"
-          aria-labelledby="offcanvasWithBothOptionsLabel"
-        >
-          <div className="offcanvas-header">
+    <div className="card mb-3 rounded-5" style={cardStyle}>
+      <div className="card-body">
+        <div style={boardWide} className={"px-auto mx-auto pt-3 container"}>
+          <h1>Welcome {username}</h1>
+          <div>
             <button
+              className="btn btn-light-outline"
               type="button"
-              className="btn-close"
-              data-bs-dismiss="offcanvas"
-              aria-label="Close"
-            ></button>
-          </div>
-          <div className="offcanvas-body">
-            <TypeTalk />
-          </div>
-        </div>
-        {/* add word offcanvas */}
-
-        <div
-          className="offcanvas offcanvas-start"
-          data-bs-scroll="true"
-          id="offcanvasAddWord"
-          aria-labelledby="offcanvasWithBothOptionsLabel"
-        >
-          <div className="offcanvas-header">
+              data-bs-toggle="offcanvas"
+              data-bs-target="#offcanvasTTS"
+              aria-controls="offcanvasTTS"
+              style={btnStyle}
+            >
+              <i className="fi fi-rr-comment-alt"></i>
+            </button>
             <button
+              className="btn btn-light-outline"
               type="button"
-              className="btn-close"
-              data-bs-dismiss="offcanvas"
-              aria-label="Close"
-            ></button>
+              data-bs-toggle="offcanvas"
+              data-bs-target="#offcanvasAddWord"
+              aria-controls="offcanvasAddWord"
+              style={btnStyle}
+            >
+              <i className="fi fi-rr-add"></i>
+            </button>
+            <button className="btn btn-light-outline" style={btnStyle}>
+              <i className="fi fi-rr-sign-out-alt"></i>
+            </button>
+
+            {/* TTS offcanvas */}
+            <div
+              className="offcanvas offcanvas-top"
+              data-bs-scroll="true"
+              id="offcanvasTTS"
+              aria-labelledby="offcanvasWithBothOptionsLabel"
+              style={popStyle}
+            >
+              <div className="offcanvas-header">
+                <button
+                  type="button"
+                  className="btn-close"
+                  data-bs-dismiss="offcanvas"
+                  aria-label="Close"
+                ></button>
+              </div>
+              <div className="offcanvas-body">
+                <TypeTalk />
+              </div>
+            </div>
+            {/* add word offcanvas */}
+
+            <div
+              className="offcanvas offcanvas-start"
+              data-bs-scroll="true"
+              id="offcanvasAddWord"
+              aria-labelledby="offcanvasWithBothOptionsLabel"
+              style={popStyle}
+            >
+              <div className="offcanvas-header">
+                <button
+                  type="button"
+                  className="btn-close"
+                  data-bs-dismiss="offcanvas"
+                  aria-label="Close"
+                ></button>
+              </div>
+              <div className="offcanvas-body">
+                <AddWord />
+              </div>
+            </div>
           </div>
-          <div className="offcanvas-body">
-            <AddWord />
-          </div>
+          <select
+            className="form-select"
+            style={selectStyle}
+            onChange={(e) => setSelectedBoard(e.target.value)}
+          >
+            {options}
+          </select>
+          <Board boardName={selectedBoard} />
         </div>
       </div>
-      <select
-        className="form-select"
-        style={selectStyle}
-        onChange={(e) => setSelectedBoard(e.target.value)}
-      >
-        {options}
-      </select>
-      <Board boardName={selectedBoard} />
     </div>
   );
 };

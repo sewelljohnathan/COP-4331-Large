@@ -106,12 +106,12 @@ const Board = (props: any) => {
 
   return (
     <div>
-      <div className="row my-3">
-        <div className="col-9">
+      <div className="row my-3 w-100">
+        <div className="col-10">
           <Output high={high * 4} words={words} />
         </div>
 
-        <div className="col-3">
+        <div className="col-2">
           <div className="row">
             <ControlButton
               txt={" Speak "}

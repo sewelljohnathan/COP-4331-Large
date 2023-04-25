@@ -6,10 +6,10 @@ import React from "react";
 const Output = (props: any) => {
   const styleO = {
     width: 100 + "%",
-    background: "#fff",
     height: 100 + "%",
     border: "0px",
-    color: "#222",
+    background: "#c3d2da",
+    color: "#50566d",
     "text-align": "right",
     display: "inline",
     "font-size": "24px",

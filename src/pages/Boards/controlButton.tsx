@@ -6,8 +6,8 @@ const ControlButton = (props: any) => {
   const style = {
     width: "fit-content",
     padding: "5px",
-    background: "DarkOliveGreen",
-    color: "white",
+    background: "#c9dac3",
+    color: "#50566d",
     "font-size": "85%",
     height: high,
   };

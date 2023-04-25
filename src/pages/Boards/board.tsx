@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import Button from "./button";
 import ControlButton from "./controlButton";
 import Output from "./output";
-import { doc, getDoc } from "firebase/firestore";
+import { doc, getDoc, arrayRemove, updateDoc } from "firebase/firestore";
 import { auth, db } from "../../config/firebase";
 import { onAuthStateChanged } from "firebase/auth";
 
@@ -31,6 +31,33 @@ const Board = (props: any) => {
         console.log("Back");
         newWords.pop();
         setWords(newWords);
+        break;
+
+        case "delete":
+        console.log("Delete");
+        
+        if (newWords.length > 0) {
+          if (window.confirm("The selected words will be deleted from your board. Are you sure you want to continue?") == true) {
+        
+            while (newWords.length > 0) {
+              let deletedWord = newWords.pop();
+
+              if (!auth.currentUser) {
+                break;
+              }
+              if (deletedWord === "" || currentBoardName === "") {
+                break;
+              }
+
+              updateDoc(doc(db, "users", auth.currentUser.uid), {
+              wordList: arrayRemove({ word: deletedWord, board: currentBoardName }),
+              }).then((res) => {
+              window.open("/board", "_self");
+              });
+            }}}
+            
+        setWords(newWords);
+        console.log(newWords);
         break;
 
       default:
@@ -120,19 +147,27 @@ const Board = (props: any) => {
               id={"speak"}
               handleClick={onControlClick}
             />
+
+            <ControlButton
+              txt={" Back "}
+              wide={100}
+              high={high}
+              id={"back"}
+              handleClick={onControlClick}
+              />
           </div>
           <div className="row">
             <ControlButton
-              id={"back"}
-              txt={" Back "}
+              id={"clear"}
+              txt={" Clear "}
               wide={50}
               high={high}
               handleClick={onControlClick}
             />
 
             <ControlButton
-              id={"clear"}
-              txt={" Clear "}
+              id={"delete"}
+              txt={" Delete "}
               wide={50}
               high={high}
               handleClick={onControlClick}

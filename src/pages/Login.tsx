@@ -92,10 +92,21 @@ export const Login = (props: any) => {
         })
         .catch((error) => {
           const errorCode = error.code;
-          const errorMessage = error.message;
+          let validErMsg1 = "auth/wrong-password";
+                let validErMsg2 = "auth/user-not-found";
+                let validErMsg3 = "auth/invalid-email";
 
-          validationError = errorMessage;
-          setFormState({ ...formState, uIdError, pwdError, validationError });
+                if (errorCode === validErMsg3)
+                {
+                    uIdError = "Invalid Email";
+                }
+
+                if (errorCode === validErMsg1 || errorCode === validErMsg2)
+                {
+                    validationError = "Invalid Email or Password";
+                }
+
+                setFormState({...formState, uIdError, pwdError, validationError});
         });
     }
   };
@@ -142,7 +153,7 @@ export const Login = (props: any) => {
             {formState.uIdError}
           </span>
         )}
-
+        <br></br>
         {/* <label htmlFor = "password">Password</label> */}
         <input
           className={isPValid ? "" : "invalid"}
@@ -163,8 +174,8 @@ export const Login = (props: any) => {
             {formState.pwdError}
           </span>
         )}
-
-        <button>Login</button>
+        <br></br>
+        <button style = {{borderRadius: "10px"}}>Login</button>
         {formState.validationError && (
           <span
             style={{ color: "red", fontWeight: "bold", fontSize: "medium" }}

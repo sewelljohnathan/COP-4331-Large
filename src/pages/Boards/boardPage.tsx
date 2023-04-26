@@ -85,7 +85,7 @@ const BoardPage = () => {
             >
               <i className="fi fi-rr-add"></i>
             </button>
-            <button className="btn btn-light-outline" style={btnStyle}>
+            <button className="btn btn-light-outline" style={btnStyle} onClick={() => window.open("/", "_self")}>
               <i className="fi fi-rr-sign-out-alt"></i>
             </button>
 

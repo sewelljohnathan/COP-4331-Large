@@ -7,13 +7,7 @@
   justify-content: center;
   color: white;
   /* background-image: linear-gradient(79deg, #622dcca0, #f069de 48%, #eebe6a); */
-  background-image: linear-gradient(60deg, #C3D2DAd9, #d3c3dade 48%, #dac3d5d7), url('./assets/bg.png');
-  /* save ↓↓↓ */
-  /* background-image: linear-gradient(60deg, #622dccd9, #f069de 48%, #eebd6ad7), url('./assets/bg.png'); */
-  /* save ↑↑↑ */
-
-  /* background-image: linear-gradient(60deg, #007f8df2, #dfbd39 48%, #fffed8ea), url('./assets/bg.png'); */
-  /* background-image: linear-gradient(60deg, #41dff4f2, #f0eee8 48%, #fa65e1ea), url('./assets/bg.png'); */
+  background-image:radial-gradient(#40C9FF, #5CACFF, #788FFF, #9473FF, #B056FF, #CC39FF, #E81CFF);
   background-size: cover;
 }
 
@@ -21,7 +15,7 @@
 {
   display: flex;
   flex-direction: column;
-  font-family: cursive;
+  font-family: 'Times New Roman', Times, serif;
 }
 
 @media screen and (min-width: 280px)
@@ -67,7 +61,7 @@ button
   border-radius: 10px;
   cursor: pointer;
   color: #622dcc;
-  font-family: cursive;
+  font-family: 'Times New Roman', Times, serif;
   font-size:larger;
 }
 

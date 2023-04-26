@@ -164,7 +164,7 @@ export const Register = (props: any) => {
             emailError = "This email is already in use";
             setIsEValid(false);
           } else if (errorCode === pswdErMsg) {
-            pwdError = "Please enter valid password:";
+            pwdError = "Please enter valid password of minimum length 6";
             setIsCValid(false);
           }
 
@@ -222,6 +222,7 @@ export const Register = (props: any) => {
           </span>
         )}
 
+        <br></br>
         {/* <label htmlFor = "lName">Last Name</label> */}
         <input
           className={isLValid ? "" : "invalid"}
@@ -243,6 +244,7 @@ export const Register = (props: any) => {
           </span>
         )}
 
+          <br></br>
         {/* <label htmlFor = "email">Email</label> */}
         <input
           className={isEValid ? "" : "invalid"}
@@ -265,6 +267,7 @@ export const Register = (props: any) => {
           </span>
         )}
 
+          <br></br>
         {/* <label htmlFor = "password">New Password</label> */}
         <input
           className={isPValid ? "" : "invalid"}
@@ -287,6 +290,7 @@ export const Register = (props: any) => {
           </span>
         )}
 
+          <br></br>
         {/* <label htmlFor = "password">Confirm Password</label> */}
         <input
           className={isCValid ? "" : "invalid"}
@@ -304,8 +308,8 @@ export const Register = (props: any) => {
             {formState.cpwdError}
           </span>
         )}
-
-        <button>Create Account</button>
+          <br></br>
+        <button style = {{borderRadius: "10px"}}>Create Account</button>
       </form>
       <button
         className="link-btn"

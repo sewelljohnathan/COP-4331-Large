@@ -38,24 +38,25 @@ const BoardPage = () => {
   });
   var cardStyle = {
     width: "95%",
-    background: "#50566d",
+    background: "#411690",
     color: "#c3d2da",
     height: "5%",
   };
 
   var popStyle = {
     color: "#50566d",
-    background: "#c3d2da",
+    background: "#411690",
   };
   const selectStyle = {
     width: "95%",
-    background: "#c3d2da",
+    background: "#E5D7FF",
     color: "#50566d",
     height: "5%",
   };
    const btnStyle = {
      width: "32px",
      height: "32px",
+     color: "#F9C6FF",
    };
 
   function handleLogout() {
@@ -71,7 +72,7 @@ const BoardPage = () => {
           <h1>Welcome {username}</h1>
           <div>
             <button
-              className="btn btn-light-outline"
+              className="btn btn-outline"
               type="button"
               data-bs-toggle="offcanvas"
               data-bs-target="#offcanvasTTS"

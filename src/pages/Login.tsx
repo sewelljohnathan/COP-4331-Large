@@ -111,8 +111,15 @@ export const Login = (props: any) => {
     }
   };
 
+  var cardStyle = {
+    width: "95%",
+    background: "#411690",
+    color: "#c3d2da",
+    height: "5%",
+  };
+
   return (
-    <div className="auth-form-container">
+    <div className="auth-form-container card rounded-5" style ={cardStyle}>
       <button className="back" onClick={() => window.open("/", "_self")}>
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -175,7 +182,7 @@ export const Login = (props: any) => {
           </span>
         )}
         <br></br>
-        <button style = {{borderRadius: "10px"}}>Login</button>
+        <button style={{ borderRadius: "10px" }}>Login</button>
         {formState.validationError && (
           <span
             style={{ color: "red", fontWeight: "bold", fontSize: "medium" }}

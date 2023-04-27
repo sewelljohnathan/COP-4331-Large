@@ -35,16 +35,23 @@ const AddWord = (props: any) => {
     });
   };
 
+  const btnStyle = {
+    width: 50,
+    padding: "5px",
+    // background: "#F9C6FF",
+    // color: "#50566d",
+  };
+
   return (
     <div className="input-group mb-3">
       <input
-        className="form-control rounded-start-pill"
+        className="form-control rounded-end-5"
         onChange={(e: any) => {
           wordRef.current = e.target.value;
         }}
       ></input>
       <select
-        className="form-select rounded-end-pill"
+        className="form-select rounded-start-circle"
         style={selectStyle}
         onChange={(e: any) => {
           boardRef.current = e.target.value;
@@ -52,8 +59,14 @@ const AddWord = (props: any) => {
       >
         {options}
       </select>
+
       <div className="col-12">
-        <button type="submit" className="btn btn-outline-secondary" onClick={addWord}>
+        <button
+          type="submit"
+          className="btn btn-outline w-100 mt-3 control"
+          onClick={addWord}
+          style={btnStyle}
+        >
           Save
         </button>
       </div>

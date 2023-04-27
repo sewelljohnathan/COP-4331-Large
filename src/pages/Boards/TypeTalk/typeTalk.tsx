@@ -27,7 +27,7 @@ const TypeTalk = (props: any) => {
     //   />
     //   <TalkButton txt={speech} store={store} />
     // </form>
-
+// E5D7FF
     <div className="input-group mb-3">
       <input
         type="text"
@@ -38,7 +38,7 @@ const TypeTalk = (props: any) => {
         onChange={(e) => setSpeech(e.target.value)}
       />
       <button
-        className="btn btn-outline-secondary"
+        className="btn btn-outline-secondary control"
         type="button"
         id="button-addon2"
         onClick={handleClick}

@@ -8,17 +8,17 @@ const Output = (props: any) => {
     width: 100 + "%",
     height: 100 + "%",
     border: "0px",
-    background: "#c3d2da",
+    background: "#E5D7FF",
     color: "#50566d",
     "text-align": "right",
     display: "inline",
     "font-size": "24px",
+    "word-wrap": "break-word",
   };
 
   return (
     <div className="screen-row h-100">
-      <input
-        type="text"
+      <textarea
         readOnly
         value={props.words.join(" ")}
         style={styleO}

@@ -15,7 +15,7 @@
 {
   display: flex;
   flex-direction: column;
-  font-family: 'Times New Roman', Times, serif;
+  /* font-family: 'Times New Roman', Times, serif; */
 }
 
 @media screen and (min-width: 280px)
@@ -56,19 +56,61 @@ button
 {
   margin-top: 10px;
   border: none;
-  background-color: white;
+  background-color: #F9C6FF;
   padding: 12px;
   border-radius: 10px;
   cursor: pointer;
-  color: #622dcc;
-  font-family: 'Times New Roman', Times, serif;
+  color: #50566d;
+  /* font-family: 'Times New Roman', Times, serif; */
   font-size:larger;
 }
 
 button:hover
 {
-  color: #330098;
+  color: #F9C6FF;
+  background-color: #00000000;
+    border-style: solid;
+  border-color: #F9C6FF;
 }
+
+button.control
+{
+  border: none;
+  background-color: #F9C6FF;
+  padding: 12px;
+  border-radius: 10px;
+  cursor: pointer;
+  color: #50566d;
+
+}
+
+button.control:hover
+{
+  color: #F9C6FF;
+  background-color: #00000000;
+    border-style: solid;
+  border-color: #F9C6FF;
+}
+
+button.word
+{
+  border: none;
+  background-color: #CCF1FF;
+  padding: 12px;
+  border-radius: 10px;
+  cursor: pointer;
+  color: #50566d;
+
+}
+
+button.word:hover
+{
+  color: #CCF1FF;
+  background-color: #00000000;
+    border-style: solid;
+  border-color: #CCF1FF;
+}
+
 
 .link-btn
 {
@@ -76,6 +118,15 @@ button:hover
   color: white;
   text-decoration: underline;
   color: white;
+}
+
+.link-btn:hover
+{
+  background: none;
+  color: white;
+  text-decoration: underline;
+  color: white;
+  border-width: 0px;
 }
 
 
@@ -99,7 +150,8 @@ button:hover
 }
 
 .back:hover {
-  color: #622dcc;
+  color: #F9C6FF;
+  border-width: 0px;
 }
 
 .invalid {

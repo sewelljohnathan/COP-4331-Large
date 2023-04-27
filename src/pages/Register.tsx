@@ -179,9 +179,15 @@ export const Register = (props: any) => {
         });
     }
   };
+  var cardStyle = {
+    width: "95%",
+    background: "#411690",
+    color: "#c3d2da",
+    height: "5%",
+  };
 
   return (
-    <div className="auth-form-container">
+    <div className="auth-form-container card rounded-5" style={cardStyle}>
       <button className="back" onClick={() => window.open("/", "_self")}>
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -244,7 +250,7 @@ export const Register = (props: any) => {
           </span>
         )}
 
-          <br></br>
+        <br></br>
         {/* <label htmlFor = "email">Email</label> */}
         <input
           className={isEValid ? "" : "invalid"}
@@ -267,7 +273,7 @@ export const Register = (props: any) => {
           </span>
         )}
 
-          <br></br>
+        <br></br>
         {/* <label htmlFor = "password">New Password</label> */}
         <input
           className={isPValid ? "" : "invalid"}
@@ -290,7 +296,7 @@ export const Register = (props: any) => {
           </span>
         )}
 
-          <br></br>
+        <br></br>
         {/* <label htmlFor = "password">Confirm Password</label> */}
         <input
           className={isCValid ? "" : "invalid"}
@@ -308,8 +314,8 @@ export const Register = (props: any) => {
             {formState.cpwdError}
           </span>
         )}
-          <br></br>
-        <button style = {{borderRadius: "10px"}}>Create Account</button>
+        <br></br>
+        <button style={{ borderRadius: "10px" }}>Create Account</button>
       </form>
       <button
         className="link-btn"

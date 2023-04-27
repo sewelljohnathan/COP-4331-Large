@@ -6,16 +6,14 @@ const ControlButton = (props: any) => {
   const style = {
     width: 50,
     padding: "5px",
-    background: "#c9dac3",
-    color: "#50566d",
-    "font-size": "85%",
+    "font-size": "80%",
     height: high,
   };
 
   return (
     <button
       type="button"
-      className={"rounded-3"}
+      className={"rounded-3 control"}
       value={props.txt}
       style={style}
       id={props.id}

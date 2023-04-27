@@ -6,8 +6,8 @@ const Button = (props: any) => {
   var high = String(props.high) + "%";
   const style = {
     width: "fit-content",
-    background: "#c3d2da",
-    color: "#50566d",
+    // background: "#CCF1FF",
+    // color: "#50566d",
     height: high,
     "font-size": "85%",
     " margin-top": "2%",
@@ -17,7 +17,7 @@ const Button = (props: any) => {
   return (
     <button
       type="button"
-      className={"rounded-3"}
+      className={"rounded-3 word"}
       value={props.txt}
       style={style}
       onClick={props.handleClick}

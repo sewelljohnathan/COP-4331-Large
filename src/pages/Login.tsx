@@ -120,7 +120,7 @@ export const Login = (props: any) => {
 
   return (
     <div className="auth-form-container card rounded-5" style ={cardStyle}>
-      <button className="back" onClick={() => window.open("/", "_self")}>
+      <button className="back m-2" onClick={() => window.open("/", "_self")}>
         <svg
           xmlns="http://www.w3.org/2000/svg"
           width="24"

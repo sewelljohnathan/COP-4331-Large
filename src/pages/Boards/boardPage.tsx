@@ -40,7 +40,7 @@ const BoardPage = () => {
     width: "95%",
     background: "#411690",
     color: "#c3d2da",
-    height: "5%",
+    height: "100%",
   };
 
   var popStyle = {

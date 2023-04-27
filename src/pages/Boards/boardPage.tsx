@@ -3,7 +3,7 @@ import Board from "./board";
 import TypeTalk from "./TypeTalk/typeTalk";
 import { boardList } from "./data";
 import AddWord from "./addWord";
-import { onAuthStateChanged } from "firebase/auth";
+import { onAuthStateChanged, signOut } from "firebase/auth";
 import { auth, db } from "../../config/firebase";
 import { doc, getDoc } from "firebase/firestore";
 
@@ -58,6 +58,11 @@ const BoardPage = () => {
      height: "32px",
    };
 
+  function handleLogout() {
+    signOut(auth);
+    window.open("/", "_self");
+  }
+
 
   return (
     <div className="card mb-3 rounded-5" style={cardStyle}>
@@ -85,7 +90,7 @@ const BoardPage = () => {
             >
               <i className="fi fi-rr-add"></i>
             </button>
-            <button className="btn btn-light-outline" style={btnStyle} onClick={() => window.open("/", "_self")}>
+            <button className="btn btn-light-outline" style={btnStyle} onClick={handleLogout}>
               <i className="fi fi-rr-sign-out-alt"></i>
             </button>
 
